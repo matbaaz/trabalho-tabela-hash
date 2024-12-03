@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 struct contatos{
   char nome[50];
@@ -57,6 +58,7 @@ void exibirContatos() {
 
 int main() {
     int opcao;
+    clock_t comeco, fim;
     do {
         char nome[50], numero[15];
 
@@ -76,12 +78,18 @@ int main() {
                 scanf("%s",nome);
                 printf("Digite o numero do Usuário:");
                 scanf("%s", numero);
+                comeco = clock();
                 adicionarContato(nome,numero);
+                fim = clock();
+                printf("Demora de %.4f ms",(double)(fim-comeco));
                 break;
             case 2:
                 printf("Digite o nome que deseja pesquisar:");
                 scanf("%s",nome);
+                comeco = clock();
                 buscarContato(nome);
+                fim = clock();
+                printf("Demora de %.4f ms",(double)(fim-comeco));
                 break;
             case 3:
                 printf("Digite o nome do contato a ser removido:");
@@ -89,7 +97,10 @@ int main() {
                 removerContato(nome);
                 break;
             case 4:
+                comeco = clock();
                 exibirContatos();
+                fim = clock();
+                printf("Demora de %.4f ms",(double)(fim-comeco));
                 break;
             case 0:
                 printf("Saindo...\n");
